@@ -15,6 +15,13 @@ export function getMarketApiBase() {
   return `http://${host}:8091/api/v1/gbm`
 }
 
+/** 拼团智能客服 Agent（ai-agent-group-buy-cs），默认同主机 :8092 */
+export function getCustomerServiceBase() {
+  const env = import.meta.env.VITE_CUSTOMER_SERVICE_API
+  if (env !== undefined && env !== '') return env.replace(/\/$/, '')
+  return `http://${host}:8092`
+}
+
 export const SOURCE = 's01'
 export const CHANNEL = 'c01'
 export const DEFAULT_GOODS_ID = '9890001'

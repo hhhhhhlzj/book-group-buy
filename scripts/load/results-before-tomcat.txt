@@ -1,9 +1,0 @@
-﻿label=before-tomcat
-total=100
-ok=75
-wallSec=30.95
-qps=3.23
-avgMs=3604.7
-p95Ms=30017
-p99Ms=30023
-maxMs=30025

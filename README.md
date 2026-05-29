@@ -1,7 +1,7 @@
 # 书香拼团交易平台
 
 > 双服务 DDD 拼团 + 支付商城：**营销 8091** 负责试算/锁单/结算/退款，**商城 8070** 负责登录/下单/支付宝回调；REST + RabbitMQ + 本地消息表保证跨服务最终一致。  
-> 在线演示：<http://111.228.26.5:8070/catalog.html>
+> 本地演示：Vue 商城 `http://127.0.0.1:5173`（开发）/ `8080`（preview）；API `8070` + `8091`
 
 [![Java](https://img.shields.io/badge/Java-17-orange)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7-brightgreen)](https://spring.io/projects/spring-boot)
@@ -14,15 +14,13 @@
 
 ## 项目演进（可运维改造）
 
-在完整拼团业务闭环之上，我按「**上线后怎么看 → 出问题怎么证 → 怎么修**」补了可观测与演练链路（方案文档见仓库外 `拼团项目-*.md`）：
+在完整拼团业务闭环之上，补充可观测与工程化能力：
 
-| 阶段 | 做了什么 | 证据 |
-|------|----------|------|
-| 可观测基础 | Micrometer + Prometheus 双服务抓取；`X-Trace-Id` 透传；锁单/支付回调业务指标 | [MONITORING.md](group-buy-market/docs/dev-ops/MONITORING.md) |
-| 指标驱动优化 | 50 并发压测发现 Tomcat 线程池过小导致 P99 顶满超时；`application-perf` 调连接/线程 | [perf-report.md](docs/perf/perf-report.md) |
-| 故障可观测 | 支付回调幂等 + `duplicate` 指标；MQ 停服后 `notify_task` 积压 Gauge + 手动补偿 | [chaos-log.md](docs/chaos/chaos-log.md) |
-
-面试讲稿：[docs/interview/talking-points.md](docs/interview/talking-points.md)
+| 阶段 | 做了什么 |
+|------|----------|
+| 可观测 | Micrometer + Prometheus + Grafana；`X-Trace-Id` 透传；锁单/支付回调业务指标（见 [MONITORING.md](group-buy-market/docs/dev-ops/MONITORING.md)） |
+| 前端 | Vue3 SPA（`mall-web/`）+ 个人中心；顶栏 **智能客服** 跳转 Agent（`:8092`，需单独启动） |
+| 压测调优 | 50 并发锁单压测 + `application-perf` 调 Tomcat 线程池 |
 
 ---
 
@@ -42,11 +40,10 @@
 
 ```text
 s-pay-mall-vs-group-buy/
-├── docs/                         # 压测 / 故障演练 / 面试讲稿
-├── scripts/load/                 # 锁单压测脚本
-├── scripts/chaos/                # 故障演练脚本
+├── scripts/load/                 # 锁单压测脚本（可选）
+├── scripts/chaos/                # 故障演练脚本（可选）
 ├── group-buy-market/             # 营销服务 :8091
-└── s-pay-mall-ddd-market/        # 商城服务 :8070
+└── s-pay-mall-ddd-market/        # 商城 :8070 + mall-web :5173
 ```
 
 ---
@@ -151,10 +148,19 @@ docker compose -f docker-compose-grafana.yml up -d
 # Prometheus http://127.0.0.1:19090  Grafana http://127.0.0.1:4000 (admin/admin123)
 ```
 
-### 5. 访问
+### 5. Vue 商城（推荐）
 
-- 书目列表：<http://127.0.0.1:8070/catalog.html>
-- 拼团详情：<http://127.0.0.1:8070/index.html?goodsId=9890001>
+```bash
+cd s-pay-mall-ddd-market/mall-web
+npm install && npm run dev
+```
+
+- 登录 / 书城：<http://127.0.0.1:5173/login>
+- 智能客服：顶栏入口 → `http://127.0.0.1:8092/group-buy-chat.html`（需另启 `ai-agent-group-buy-cs`）
+
+### 6. 访问（旧版静态页，可选）
+
+- <http://127.0.0.1:8070/catalog.html>
 
 ---
 
@@ -173,7 +179,7 @@ docker compose -f docker-compose-grafana.yml up -d
 
 - [group-buy-market/README.md](group-buy-market/README.md) — 营销中台
 - [s-pay-mall-ddd-market/README.md](s-pay-mall-ddd-market/README.md) — 支付商城
-- [HANDOFF.md](HANDOFF.md) — 接手与踩坑清单
+- [mall-web/README.md](s-pay-mall-ddd-market/mall-web/README.md) — Vue 商城与智能客服入口
 
 ---
 

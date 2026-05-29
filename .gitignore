@@ -71,3 +71,16 @@ Thumbs.db
 # Node (if any frontend)
 node_modules/
 npm-debug.log
+**/dist/
+
+# ============================================
+# 内部交接 / 面试 / 压测记录（不上传 GitHub）
+# ============================================
+HANDOFF*.md
+**/HANDOFF*.md
+docs/chaos/
+docs/perf/
+docs/interview/
+docs/README.md
+scripts/load/README.md
+scripts/load/results-*.txt

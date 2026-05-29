@@ -53,6 +53,8 @@ npm.cmd run preview
 | `/mall/goods/:goodsId` | 拼团详情 |
 | `/mall/orders` | 订单列表 |
 
+顶栏 **智能客服** 跳转 `http://{host}:8092/group-buy-chat.html`（需单独启动 `ai-agent-group-buy-cs`）；详情页会带上当前 `goodsId`。
+
 开发态 API 经 Vite 代理：`/api`→8070，`/gbm`→8091，`/images`→8070。
 
 商品 manifest 唯一维护点：`src/data/books.js`（含 `categoryId`）。
