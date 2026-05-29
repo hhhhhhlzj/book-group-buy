@@ -1,5 +1,5 @@
-# 命令执行 docker-compose -f docker-compose-environment-aliyun.yml up -d
-# docker 代理和使用文档；https://bugstack.cn/md/road-map/docker.html
+﻿# 鍛戒护鎵ц docker-compose -f docker-compose-environment-aliyun.yml up -d
+# docker 浠ｇ悊鍜屼娇鐢ㄦ枃妗ｏ紱
 version: '3.9'
 services:
   mysql:
@@ -83,7 +83,7 @@ services:
         condition: service_healthy
 
   # rabbitmq
-  # 账密 admin/admin
+  # 璐﹀瘑 admin/admin
   # rabbitmq-plugins enable rabbitmq_management
   rabbitmq:
     image: rabbitmq:3.12.9

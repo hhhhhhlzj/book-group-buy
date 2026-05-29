@@ -6,7 +6,7 @@ import com.shuxiang.groupbuy.domain.trade.model.entity.*;
 import com.shuxiang.groupbuy.domain.trade.model.valobj.GroupBuyProgressVO;
 import com.shuxiang.groupbuy.domain.trade.service.ITradeLockOrderService;
 import com.shuxiang.groupbuy.domain.trade.service.lock.factory.TradeLockRuleFilterFactory;
-import cn.bugstack.wrench.design.framework.link.model2.chain.BusinessLinkedList;
+import com.shuxiang.wrench.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

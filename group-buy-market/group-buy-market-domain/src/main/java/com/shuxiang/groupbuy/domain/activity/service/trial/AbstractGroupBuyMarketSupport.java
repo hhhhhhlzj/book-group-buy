@@ -2,7 +2,7 @@ package com.shuxiang.groupbuy.domain.activity.service.trial;
 
 import com.shuxiang.groupbuy.domain.activity.adapter.repository.IActivityRepository;
 import com.shuxiang.groupbuy.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
-import cn.bugstack.wrench.design.framework.tree.AbstractMultiThreadStrategyRouter;
+import com.shuxiang.wrench.design.framework.tree.AbstractMultiThreadStrategyRouter;
 
 import javax.annotation.Resource;
 import java.util.concurrent.ExecutionException;

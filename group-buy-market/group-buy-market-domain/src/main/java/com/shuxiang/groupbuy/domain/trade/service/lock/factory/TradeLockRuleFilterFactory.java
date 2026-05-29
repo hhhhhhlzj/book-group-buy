@@ -6,8 +6,8 @@ import com.shuxiang.groupbuy.domain.trade.model.entity.TradeLockRuleFilterBackEn
 import com.shuxiang.groupbuy.domain.trade.service.lock.filter.ActivityUsabilityRuleFilter;
 import com.shuxiang.groupbuy.domain.trade.service.lock.filter.TeamStockOccupyRuleFilter;
 import com.shuxiang.groupbuy.domain.trade.service.lock.filter.UserTakeLimitRuleFilter;
-import cn.bugstack.wrench.design.framework.link.model2.LinkArmory;
-import cn.bugstack.wrench.design.framework.link.model2.chain.BusinessLinkedList;
+import com.shuxiang.wrench.design.framework.link.model2.LinkArmory;
+import com.shuxiang.wrench.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

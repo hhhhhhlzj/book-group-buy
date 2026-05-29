@@ -8,7 +8,7 @@ import com.shuxiang.groupbuy.domain.trade.model.entity.TradeSettlementRuleFilter
 import com.shuxiang.groupbuy.domain.trade.service.settlement.factory.TradeSettlementRuleFilterFactory;
 import com.shuxiang.groupbuy.types.enums.ResponseCode;
 import com.shuxiang.groupbuy.types.exception.AppException;
-import cn.bugstack.wrench.design.framework.link.model2.handler.ILogicHandler;
+import com.shuxiang.wrench.design.framework.link.model2.handler.ILogicHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

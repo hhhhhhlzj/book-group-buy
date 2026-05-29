@@ -12,7 +12,7 @@ import com.shuxiang.groupbuy.domain.trade.service.lock.factory.TradeLockRuleFilt
 import com.shuxiang.groupbuy.domain.trade.service.refund.business.IRefundOrderStrategy;
 import com.shuxiang.groupbuy.domain.trade.service.refund.factory.TradeRefundRuleFilterFactory;
 import com.shuxiang.groupbuy.types.enums.GroupBuyOrderEnumVO;
-import cn.bugstack.wrench.design.framework.link.model2.chain.BusinessLinkedList;
+import com.shuxiang.wrench.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

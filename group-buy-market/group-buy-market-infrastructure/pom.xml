@@ -24,7 +24,6 @@
             <artifactId>redisson-spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- http 接口框架 https://bugstack.cn/md/road-map/http.html -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp-sse</artifactId>
@@ -36,9 +35,8 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.bugstack.wrench</groupId>
-            <artifactId>xfg-wrench-starter-dynamic-config-center</artifactId>
-            <version>3.0.0</version>
+            <groupId>com.shuxiang</groupId>
+            <artifactId>shuxiang-framework</artifactId>
         </dependency>
 
         <!-- 系统模块 -->

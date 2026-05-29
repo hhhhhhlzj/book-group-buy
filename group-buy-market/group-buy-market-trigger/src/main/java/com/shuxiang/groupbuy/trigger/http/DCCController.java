@@ -3,7 +3,7 @@ package com.shuxiang.groupbuy.trigger.http;
 import com.shuxiang.groupbuy.api.IDCCService;
 import com.shuxiang.groupbuy.api.response.Response;
 import com.shuxiang.groupbuy.types.enums.ResponseCode;
-import cn.bugstack.wrench.dynamic.config.center.domain.model.valobj.AttributeVO;
+import com.shuxiang.wrench.dynamic.config.center.domain.model.valobj.AttributeVO;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RTopic;
 import org.springframework.web.bind.annotation.*;

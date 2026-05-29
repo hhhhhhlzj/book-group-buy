@@ -378,7 +378,7 @@ public class TradeRepository implements ITradeRepository {
     /**
      * 占用库存
      * <p>
-     * 关于 Redis 独占锁和无锁化设计；<a href="https://bugstack.cn/md/road-map/redis.html">Redis 缓存、加锁(独占/分段)、发布/订阅，常用特性的使用和高级编码操作</a>
+     * Redis 独占锁占用库存（incr + setNx）
      */
     @Override
     public boolean occupyTeamStock(String teamStockKey, String recoveryTeamStockKey, Integer target, Integer validTime) {

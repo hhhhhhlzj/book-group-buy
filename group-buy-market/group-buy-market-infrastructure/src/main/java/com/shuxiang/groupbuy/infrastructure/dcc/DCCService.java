@@ -1,7 +1,7 @@
 package com.shuxiang.groupbuy.infrastructure.dcc;
 
 import com.shuxiang.groupbuy.types.common.Constants;
-import cn.bugstack.wrench.dynamic.config.center.types.annotations.DCCValue;
+import com.shuxiang.wrench.dynamic.config.center.types.annotations.DCCValue;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

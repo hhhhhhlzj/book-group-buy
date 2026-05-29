@@ -2,7 +2,7 @@ package com.shuxiang.groupbuy.test.types;
 
 import com.shuxiang.groupbuy.test.types.rule02.factory.Rule02TradeRuleFactory;
 import com.shuxiang.groupbuy.test.types.rule02.logic.XxxResponse;
-import cn.bugstack.wrench.design.framework.link.model2.chain.BusinessLinkedList;
+import com.shuxiang.wrench.design.framework.link.model2.chain.BusinessLinkedList;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

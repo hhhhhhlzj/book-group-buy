@@ -5,7 +5,7 @@ import com.shuxiang.groupbuy.domain.trade.model.entity.GroupBuyActivityEntity;
 import com.shuxiang.groupbuy.domain.trade.model.entity.TradeLockRuleCommandEntity;
 import com.shuxiang.groupbuy.domain.trade.model.entity.TradeLockRuleFilterBackEntity;
 import com.shuxiang.groupbuy.domain.trade.service.lock.factory.TradeLockRuleFilterFactory;
-import cn.bugstack.wrench.design.framework.link.model2.handler.ILogicHandler;
+import com.shuxiang.wrench.design.framework.link.model2.handler.ILogicHandler;
 import com.shuxiang.groupbuy.types.enums.ResponseCode;
 import com.shuxiang.groupbuy.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;

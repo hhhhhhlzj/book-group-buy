@@ -9,7 +9,7 @@ import com.shuxiang.groupbuy.domain.trade.service.ITradeTaskService;
 import com.shuxiang.groupbuy.domain.trade.service.settlement.factory.TradeSettlementRuleFilterFactory;
 import com.shuxiang.groupbuy.types.enums.NotifyTaskHTTPEnumVO;
 import com.shuxiang.groupbuy.types.exception.AppException;
-import cn.bugstack.wrench.design.framework.link.model2.chain.BusinessLinkedList;
+import com.shuxiang.wrench.design.framework.link.model2.chain.BusinessLinkedList;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import com.shuxiang.groupbuy.domain.activity.model.entity.MarketProductEntity;
 import com.shuxiang.groupbuy.domain.activity.model.entity.TrialBalanceEntity;
 import com.shuxiang.groupbuy.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import com.shuxiang.groupbuy.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
-import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
+import com.shuxiang.wrench.design.framework.tree.StrategyHandler;
 import com.shuxiang.groupbuy.types.enums.ResponseCode;
 import com.shuxiang.groupbuy.types.exception.AppException;
 import com.alibaba.fastjson.JSON;

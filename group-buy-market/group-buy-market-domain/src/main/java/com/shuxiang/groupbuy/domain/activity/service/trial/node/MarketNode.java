@@ -10,7 +10,7 @@ import com.shuxiang.groupbuy.domain.activity.service.trial.AbstractGroupBuyMarke
 import com.shuxiang.groupbuy.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
 import com.shuxiang.groupbuy.domain.activity.service.trial.thread.QueryGroupBuyActivityDiscountVOThreadTask;
 import com.shuxiang.groupbuy.domain.activity.service.trial.thread.QuerySkuVOFromDBThreadTask;
-import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
+import com.shuxiang.wrench.design.framework.tree.StrategyHandler;
 import com.shuxiang.groupbuy.types.enums.ResponseCode;
 import com.shuxiang.groupbuy.types.exception.AppException;
 import com.alibaba.fastjson.JSON;
@@ -33,9 +33,6 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 
     @Resource
     private ThreadPoolExecutor threadPoolExecutor;
-    /**
-     * <a href="https://bugstack.cn/md/road-map/spring-dependency-injection.html">Spring 注入详细说明</a>
-     */
     @Resource
     private Map<String, IDiscountCalculateService> discountCalculateServiceMap;
     @Resource

@@ -1,7 +1,7 @@
 package com.shuxiang.groupbuy.test.types.rule02.logic;
 
 import com.shuxiang.groupbuy.test.types.rule02.factory.Rule02TradeRuleFactory;
-import cn.bugstack.wrench.design.framework.link.model2.handler.ILogicHandler;
+import com.shuxiang.wrench.design.framework.link.model2.handler.ILogicHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

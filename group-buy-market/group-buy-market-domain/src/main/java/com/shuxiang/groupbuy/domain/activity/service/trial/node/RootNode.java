@@ -6,7 +6,7 @@ import com.shuxiang.groupbuy.domain.activity.service.trial.AbstractGroupBuyMarke
 import com.shuxiang.groupbuy.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
 import com.shuxiang.groupbuy.types.enums.ResponseCode;
 import com.shuxiang.groupbuy.types.exception.AppException;
-import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
+import com.shuxiang.wrench.design.framework.tree.StrategyHandler;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

@@ -3,7 +3,7 @@ package com.shuxiang.groupbuy.test.types.rule01.factory;
 import com.shuxiang.groupbuy.test.types.rule01.logic.RuleLogic101;
 import com.shuxiang.groupbuy.test.types.rule01.logic.RuleLogic102;
 import com.shuxiang.groupbuy.test.types.rule02.factory.Rule02TradeRuleFactory;
-import cn.bugstack.wrench.design.framework.link.model1.ILogicLink;
+import com.shuxiang.wrench.design.framework.link.model1.ILogicLink;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

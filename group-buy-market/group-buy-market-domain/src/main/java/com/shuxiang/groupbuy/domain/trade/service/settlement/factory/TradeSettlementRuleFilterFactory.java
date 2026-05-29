@@ -8,8 +8,8 @@ import com.shuxiang.groupbuy.domain.trade.service.settlement.filter.EndRuleFilte
 import com.shuxiang.groupbuy.domain.trade.service.settlement.filter.OutTradeNoRuleFilter;
 import com.shuxiang.groupbuy.domain.trade.service.settlement.filter.SCRuleFilter;
 import com.shuxiang.groupbuy.domain.trade.service.settlement.filter.SettableRuleFilter;
-import cn.bugstack.wrench.design.framework.link.model2.LinkArmory;
-import cn.bugstack.wrench.design.framework.link.model2.chain.BusinessLinkedList;
+import com.shuxiang.wrench.design.framework.link.model2.LinkArmory;
+import com.shuxiang.wrench.design.framework.link.model2.chain.BusinessLinkedList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

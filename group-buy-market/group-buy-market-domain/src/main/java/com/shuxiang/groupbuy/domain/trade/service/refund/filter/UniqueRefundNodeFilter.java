@@ -5,7 +5,7 @@ import com.shuxiang.groupbuy.domain.trade.model.entity.TradeRefundBehaviorEntity
 import com.shuxiang.groupbuy.domain.trade.model.entity.TradeRefundCommandEntity;
 import com.shuxiang.groupbuy.domain.trade.model.valobj.TradeOrderStatusEnumVO;
 import com.shuxiang.groupbuy.domain.trade.service.refund.factory.TradeRefundRuleFilterFactory;
-import cn.bugstack.wrench.design.framework.link.model2.handler.ILogicHandler;
+import com.shuxiang.wrench.design.framework.link.model2.handler.ILogicHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

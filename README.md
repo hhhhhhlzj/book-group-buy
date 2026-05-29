@@ -181,8 +181,3 @@ docker compose -f docker-compose-grafana.yml up -d
 
 [MIT](LICENSE)
 
----
-
-## 参考与致谢
-
-业务模型与 DDD 分层参考了开源社区拼团教程实现；本人在此基础上完成 Vue 商城、个人中心、多商品扩展、公网部署、**可观测与故障演练**等工程化改造。感谢 [bugstack.cn](https://bugstack.cn/) 系列资料提供的初始思路；业务代码包名为 `com.shuxiang.groupbuy`，规则树/DCC 等能力依赖 `cn.bugstack.wrench` 组件库。

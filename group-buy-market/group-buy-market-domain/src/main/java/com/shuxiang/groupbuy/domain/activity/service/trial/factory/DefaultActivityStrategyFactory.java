@@ -5,7 +5,7 @@ import com.shuxiang.groupbuy.domain.activity.model.entity.TrialBalanceEntity;
 import com.shuxiang.groupbuy.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import com.shuxiang.groupbuy.domain.activity.model.valobj.SkuVO;
 import com.shuxiang.groupbuy.domain.activity.service.trial.node.RootNode;
-import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
+import com.shuxiang.wrench.design.framework.tree.StrategyHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

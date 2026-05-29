@@ -4,7 +4,7 @@ import com.shuxiang.groupbuy.domain.trade.model.entity.GroupBuyTeamEntity;
 import com.shuxiang.groupbuy.domain.trade.model.entity.TradeSettlementRuleCommandEntity;
 import com.shuxiang.groupbuy.domain.trade.model.entity.TradeSettlementRuleFilterBackEntity;
 import com.shuxiang.groupbuy.domain.trade.service.settlement.factory.TradeSettlementRuleFilterFactory;
-import cn.bugstack.wrench.design.framework.link.model2.handler.ILogicHandler;
+import com.shuxiang.wrench.design.framework.link.model2.handler.ILogicHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

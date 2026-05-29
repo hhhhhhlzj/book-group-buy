@@ -9,7 +9,7 @@ import com.shuxiang.groupbuy.domain.activity.model.valobj.GroupBuyActivityDiscou
 import com.shuxiang.groupbuy.domain.activity.model.valobj.SkuVO;
 import com.shuxiang.groupbuy.domain.activity.model.valobj.TeamStatisticVO;
 import com.shuxiang.groupbuy.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
-import cn.bugstack.wrench.design.framework.tree.StrategyHandler;
+import com.shuxiang.wrench.design.framework.tree.StrategyHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
