@@ -1,0 +1,540 @@
+/* ==========================================================
+   书香拼团 / 主商品页样式
+   配色：墨黑 + 朱砂红 + 宣纸米白 + 淡金
+   ========================================================== */
+:root {
+    --ink-black: #1a1a1a;
+    --ink-deep: #2c2c2c;
+    --ink-mid: #555;
+    --ink-light: #888;
+    --vermillion: #b22222;
+    --vermillion-deep: #8b0000;
+    --vermillion-soft: #d8534a;
+    --paper: #faf6ee;
+    --paper-soft: #f5f1e8;
+    --paper-line: #e8e0d0;
+    --gold: #b8860b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink-black);
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    padding-bottom: 80px;
+    min-height: 100vh;
+}
+
+/* 顶部品牌条 */
+.top-bar {
+    background: var(--ink-black);
+    color: var(--paper);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--vermillion);
+}
+.top-bar .brand {
+    font-size: 18px;
+    font-weight: 600;
+}
+.top-bar .brand .seal {
+    display: inline-block;
+    color: var(--paper);
+    background: var(--vermillion);
+    padding: 1px 6px;
+    margin-right: 8px;
+    border-radius: 2px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.top-bar .nav-link {
+    color: var(--paper);
+    font-size: 13px;
+    cursor: pointer;
+    opacity: 0.8;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+.top-bar .nav-link:hover {
+    opacity: 1;
+    color: var(--vermillion-soft);
+}
+.top-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 轮播图：书籍展示卡 */
+.swiper-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 24px auto 0;
+    aspect-ratio: 3/2;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper-soft);
+    border: 1px solid var(--paper-line);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+.swiper-wrapper {
+    display: flex;
+    transition: transform 0.4s ease;
+    height: 100%;
+}
+.swiper-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--paper);
+}
+.swiper-pagination {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+.swiper-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(26, 26, 26, 0.25);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.swiper-dot.active {
+    background: var(--vermillion);
+    width: 22px;
+    border-radius: 4px;
+}
+
+/* 商品信息（书名 + 作者 + 元数据） */
+.product-info {
+    max-width: 720px;
+    margin: 24px auto 0;
+    padding: 28px 32px;
+    background: #fff;
+    border: 1px solid var(--paper-line);
+    position: relative;
+}
+.product-info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--vermillion), var(--vermillion-deep));
+}
+.product-title {
+    font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+    font-size: 26px;
+    color: var(--ink-black);
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.book-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: var(--ink-mid);
+    font-size: 13px;
+    border-top: 1px dashed var(--paper-line);
+    border-bottom: 1px dashed var(--paper-line);
+    padding: 10px 0;
+    margin: 12px 0 16px;
+}
+.book-meta .meta-item .label {
+    color: var(--ink-light);
+    margin-right: 4px;
+}
+.book-meta .meta-item .value {
+    color: var(--ink-deep);
+    font-weight: 500;
+}
+
+.promotion-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--vermillion);
+    color: #fff;
+    font-size: 12px;
+    margin-right: 8px;
+    letter-spacing: 1px;
+    font-family: "Songti SC", "STSong", serif;
+    border-radius: 2px;
+}
+.promotion-text {
+    font-size: 14px;
+    color: var(--vermillion);
+    margin: 8px 0;
+    letter-spacing: 0.5px;
+}
+
+/* 本书亮点 - 4 个特性 */
+.book-highlights {
+    max-width: 720px;
+    margin: 16px auto 0;
+    padding: 20px 32px;
+    background: #fff;
+    border: 1px solid var(--paper-line);
+    border-left: 4px solid var(--gold);
+}
+.book-highlights h3 {
+    font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+    font-size: 16px;
+    color: var(--ink-black);
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+}
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+.highlight-item {
+    border-left: 2px solid var(--vermillion);
+    padding: 4px 0 4px 12px;
+}
+.highlight-item .h-title {
+    font-family: "Songti SC", "STSong", serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-black);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+.highlight-item .h-desc {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+}
+
+/* 拼单列表 */
+.group-list {
+    max-width: 720px;
+    margin: 16px auto 0;
+    background: #fff;
+    border: 1px solid var(--paper-line);
+    padding: 8px 24px;
+}
+.group-list::before {
+    content: "·  拼  团  ·";
+    display: block;
+    text-align: center;
+    font-family: "Songti SC", "STSong", serif;
+    font-size: 14px;
+    color: var(--vermillion);
+    letter-spacing: 4px;
+    padding: 12px 0 8px;
+    border-bottom: 1px solid var(--paper-line);
+    margin-bottom: 4px;
+}
+.group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--paper-line);
+}
+.group-item:last-child {
+    border-bottom: none;
+}
+.user-info {
+    font-size: 14px;
+    color: var(--ink-deep);
+    font-weight: 500;
+    font-family: "Courier New", monospace;
+}
+.group-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 4px;
+}
+.countdown {
+    color: var(--vermillion);
+    font-weight: 600;
+    font-family: "Courier New", monospace;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+.group-btn {
+    background: transparent;
+    color: var(--vermillion);
+    border: 1px solid var(--vermillion);
+    padding: 7px 18px;
+    border-radius: 2px;
+    font-size: 13px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s;
+    font-family: "Songti SC", "STSong", serif;
+}
+.group-btn:hover {
+    background: var(--vermillion);
+    color: #fff;
+}
+
+/* 空白填充 */
+.area {
+    height: 30px;
+}
+
+/* 价格区域（保留以兼容） */
+.original-price {
+    font-size: 14px;
+    color: var(--ink-light);
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+.discount-price {
+    font-size: 24px;
+    color: var(--vermillion);
+    font-weight: bold;
+}
+
+/* 底部操作栏 */
+.action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 12px 16px;
+    display: flex;
+    gap: 10px;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid var(--paper-line);
+    z-index: 50;
+}
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.25s;
+    font-family: "Songti SC", "STSong", serif;
+    border-radius: 2px;
+}
+.order-list-btn {
+    flex: 0.6;
+    background: transparent;
+    color: var(--ink-mid);
+    font-size: 13px;
+    border: 1px solid var(--paper-line);
+}
+.order-list-btn:hover {
+    color: var(--ink-black);
+    border-color: var(--ink-mid);
+}
+.test-callback-btn {
+    flex: 0.6;
+    background: transparent;
+    color: var(--gold);
+    font-size: 13px;
+    border: 1px solid var(--gold);
+}
+.test-callback-btn:hover {
+    background: var(--gold);
+    color: #fff;
+}
+.buy-alone {
+    background: #fff;
+    color: var(--vermillion);
+    border: 1px solid var(--vermillion);
+}
+.buy-alone:hover {
+    background: var(--paper-soft);
+}
+.group-buy {
+    background: var(--vermillion);
+    color: #fff;
+    border: 1px solid var(--vermillion);
+}
+.group-buy:hover {
+    background: var(--vermillion-deep);
+}
+
+/* 旧的 modal/qr 兼容（基本未使用） */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 5px;
+}
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 20px 0;
+}
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 空状态提示 */
+.group-item.empty-tips {
+    text-align: center;
+    padding: 28px 16px;
+    border-bottom: none;
+}
+.tips-content {
+    color: var(--ink-mid);
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-family: "Songti SC", "STSong", serif;
+}
+.tips-content::before {
+    content: "—— ";
+    color: var(--gold);
+}
+.tips-content::after {
+    content: " ——";
+    color: var(--gold);
+}
+
+/* 支付确认弹窗 */
+.payment-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 26, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+.payment-modal {
+    background: #fff;
+    padding: 28px 24px;
+    border-radius: 4px;
+    max-width: 400px;
+    width: 90%;
+    border-top: 4px solid var(--vermillion);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+.payment-modal h3 {
+    margin-top: 0;
+    color: var(--ink-black);
+    border-bottom: 1px dashed var(--paper-line);
+    padding-bottom: 12px;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+.payment-modal p {
+    margin: 10px 0;
+    color: var(--ink-mid);
+    font-size: 14px;
+}
+.payment-modal .copyable {
+    color: var(--vermillion);
+    cursor: pointer;
+    border-bottom: 1px dashed var(--vermillion);
+}
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.25s;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 1px;
+}
+.confirm-btn {
+    background: var(--vermillion);
+    color: #fff;
+}
+.confirm-btn:hover {
+    background: var(--vermillion-deep);
+}
+.cancel-btn {
+    background: var(--paper-soft);
+    color: var(--ink-mid);
+    border: 1px solid var(--paper-line);
+}
+.cancel-btn:hover {
+    background: var(--paper-line);
+}
+
+/* 响应式 */
+@media (max-width: 720px) {
+    .swiper-container,
+    .product-info,
+    .book-highlights,
+    .group-list {
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    .product-info,
+    .book-highlights {
+        padding: 20px 16px;
+    }
+    .product-title {
+        font-size: 22px;
+    }
+    .highlight-grid {
+        grid-template-columns: 1fr;
+    }
+}

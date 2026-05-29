@@ -1,0 +1,1 @@
+package com.shuxiang.groupbuy.domain.auth.service;

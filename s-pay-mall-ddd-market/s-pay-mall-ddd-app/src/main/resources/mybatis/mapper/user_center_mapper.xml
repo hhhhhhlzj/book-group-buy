@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shuxiang.groupbuy.infrastructure.dao.IUserCenterDao">
+
+    <resultMap id="addressMap" type="com.shuxiang.groupbuy.infrastructure.dao.po.UserAddress">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="receiver_name" property="receiverName"/>
+        <result column="receiver_phone" property="receiverPhone"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="is_default" property="isDefault"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="favoriteMap" type="com.shuxiang.groupbuy.infrastructure.dao.po.UserFavorite">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="browseMap" type="com.shuxiang.groupbuy.infrastructure.dao.po.UserBrowseHistory">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="browse_time" property="browseTime"/>
+    </resultMap>
+
+    <select id="listAddressByUserId" resultMap="addressMap">
+        select id, user_id, receiver_name, receiver_phone, province, city, district, detail_address, is_default, create_time, update_time
+        from user_address
+        where user_id = #{userId}
+        order by is_default desc, id desc
+    </select>
+
+    <select id="queryAddressById" resultMap="addressMap">
+        select id, user_id, receiver_name, receiver_phone, province, city, district, detail_address, is_default, create_time, update_time
+        from user_address
+        where id = #{id}
+    </select>
+
+    <select id="queryDefaultAddress" resultMap="addressMap">
+        select id, user_id, receiver_name, receiver_phone, province, city, district, detail_address, is_default, create_time, update_time
+        from user_address
+        where user_id = #{userId} and is_default = 1
+        limit 1
+    </select>
+
+    <insert id="insertAddress" parameterType="com.shuxiang.groupbuy.infrastructure.dao.po.UserAddress" useGeneratedKeys="true" keyProperty="id">
+        insert into user_address(user_id, receiver_name, receiver_phone, province, city, district, detail_address, is_default, create_time, update_time)
+        values(#{userId}, #{receiverName}, #{receiverPhone}, #{province}, #{city}, #{district}, #{detailAddress}, #{isDefault}, now(), now())
+    </insert>
+
+    <update id="updateAddress" parameterType="com.shuxiang.groupbuy.infrastructure.dao.po.UserAddress">
+        update user_address
+        set receiver_name = #{receiverName}, receiver_phone = #{receiverPhone},
+            province = #{province}, city = #{city}, district = #{district},
+            detail_address = #{detailAddress}, is_default = #{isDefault}, update_time = now()
+        where id = #{id} and user_id = #{userId}
+    </update>
+
+    <delete id="deleteAddress">
+        delete from user_address where id = #{id} and user_id = #{userId}
+    </delete>
+
+    <update id="clearDefaultAddress">
+        update user_address set is_default = 0, update_time = now() where user_id = #{userId}
+    </update>
+
+    <update id="setDefaultAddress">
+        update user_address set is_default = 1, update_time = now() where id = #{id} and user_id = #{userId}
+    </update>
+
+    <select id="listFavorites" resultMap="favoriteMap">
+        select id, user_id, goods_id, create_time from user_favorite
+        where user_id = #{userId}
+        order by create_time desc
+        limit 5
+    </select>
+
+    <select id="countFavorites" resultType="int">
+        select count(1) from user_favorite where user_id = #{userId}
+    </select>
+
+    <select id="queryFavorite" resultMap="favoriteMap">
+        select id, user_id, goods_id, create_time from user_favorite
+        where user_id = #{userId} and goods_id = #{goodsId}
+        limit 1
+    </select>
+
+    <insert id="insertFavorite" parameterType="com.shuxiang.groupbuy.infrastructure.dao.po.UserFavorite" useGeneratedKeys="true" keyProperty="id">
+        insert into user_favorite(user_id, goods_id, create_time)
+        values(#{userId}, #{goodsId}, now())
+    </insert>
+
+    <delete id="deleteFavorite">
+        delete from user_favorite where user_id = #{userId} and goods_id = #{goodsId}
+    </delete>
+
+    <select id="listBrowseHistory" resultMap="browseMap">
+        select id, user_id, goods_id, browse_time from user_browse_history
+        where user_id = #{userId}
+        order by browse_time desc
+        limit #{limit}
+    </select>
+
+    <insert id="upsertBrowseHistory">
+        insert into user_browse_history(user_id, goods_id, browse_time)
+        values(#{userId}, #{goodsId}, now())
+        on duplicate key update browse_time = now()
+    </insert>
+
+    <delete id="trimBrowseHistory">
+        delete from user_browse_history
+        where user_id = #{userId}
+        and id not in (
+            select id from (
+                select id from user_browse_history
+                where user_id = #{userId}
+                order by browse_time desc
+                limit #{keep}
+            ) t
+        )
+    </delete>
+
+</mapper>

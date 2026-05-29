@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香拼团 · 登录</title>
+    <script src="js/common.js"></script>
+    <style>
+        :root {
+            --ink-black: #1a1a1a;
+            --ink-deep: #2c2c2c;
+            --ink-mid: #555;
+            --ink-light: #888;
+            --vermillion: #b22222;
+            --vermillion-deep: #8b0000;
+            --paper: #faf6ee;
+            --paper-soft: #f5f1e8;
+            --paper-line: #e8e0d0;
+            --gold: #b8860b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            background: var(--paper);
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(178, 34, 34, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(184, 134, 11, 0.06) 0%, transparent 40%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--ink-black);
+        }
+
+        /* 装饰性边框：印章感 */
+        .login-frame {
+            position: relative;
+            padding: 18px;
+        }
+        .login-frame::before,
+        .login-frame::after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--vermillion);
+        }
+        .login-frame::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+        .login-frame::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 48px 40px 36px;
+            border: 1px solid var(--paper-line);
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            position: relative;
+        }
+        .login-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--vermillion), transparent);
+        }
+
+        .brand-title {
+            font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+            font-size: 28px;
+            color: var(--ink-black);
+            font-weight: 600;
+            letter-spacing: 6px;
+            margin-bottom: 6px;
+        }
+        .brand-title .seal {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 30px;
+            color: #fff;
+            background: var(--vermillion);
+            border-radius: 4px;
+            font-size: 18px;
+            margin-right: 10px;
+            letter-spacing: 0;
+            vertical-align: middle;
+        }
+        .brand-sub {
+            font-family: "Songti SC", "STSong", serif;
+            font-size: 13px;
+            color: var(--ink-light);
+            letter-spacing: 4px;
+            margin-bottom: 28px;
+        }
+        .brand-sub::before,
+        .brand-sub::after {
+            content: "—";
+            color: var(--gold);
+            margin: 0 8px;
+        }
+
+        .qr-code {
+            margin: 20px auto 24px;
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            background: var(--paper-soft);
+            border: 1px solid var(--paper-line);
+        }
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            display: block;
+        }
+        /* 二维码角标 */
+        .qr-corner {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--vermillion);
+        }
+        .qr-corner.tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+        .qr-corner.tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .qr-corner.bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+        .qr-corner.br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+        .instructions {
+            color: var(--ink-mid);
+            font-size: 14px;
+            margin-top: 4px;
+            line-height: 1.7;
+            letter-spacing: 1px;
+        }
+        .instructions strong {
+            color: var(--vermillion);
+            font-weight: 500;
+        }
+
+        .stealth-login-btn {
+            background-color: transparent;
+            color: var(--ink-deep);
+            border: 1px solid var(--ink-deep);
+            padding: 11px 28px;
+            border-radius: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 26px;
+            letter-spacing: 2px;
+            font-family: "Songti SC", "STSong", serif;
+            transition: all 0.25s ease;
+        }
+        .stealth-login-btn:hover {
+            background-color: var(--ink-black);
+            color: #fff;
+            border-color: var(--ink-black);
+        }
+
+        .footer-tip {
+            margin-top: 30px;
+            font-size: 12px;
+            color: var(--ink-light);
+            letter-spacing: 1px;
+            font-family: "Songti SC", "STSong", serif;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        .pulse {
+            animation: pulse 1.6s infinite;
+        }
+    </style>
+</head>
+<body>
+<div class="login-frame">
+    <div class="login-container">
+        <div class="brand-title"><span class="seal">书</span>书香拼团</div>
+        <div class="brand-sub">技术好书共读社区</div>
+
+        <div class="qr-code">
+            <span class="qr-corner tl"></span>
+            <span class="qr-corner tr"></span>
+            <span class="qr-corner bl"></span>
+            <span class="qr-corner br"></span>
+            <img id="qr-code-img" src="images/placeholder.png" alt="微信二维码" class="pulse">
+        </div>
+        <p class="instructions">请使用<strong>微信</strong>扫描二维码登录<br>关注后自动完成身份绑定</p>
+        <button id="stealth-login-btn" class="stealth-login-btn">无 痕 登 录 · 浏 览 器 指 纹</button>
+        <div class="footer-tip">© 书香拼团 · Spring Boot DDD Demo</div>
+    </div>
+</div>
+
+<script>
+    var sPayMallUrl = AppConfig.sPayMallUrl;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // ./js/v4.js 替换 https://openfpcdn.io/fingerprintjs/v4
+        const fpPromise = import('./js/v4.js')
+            .then(FingerprintJS => FingerprintJS.load());
+
+        // 获取浏览器指纹 ID
+        fpPromise
+            .then(fp => fp.get())
+            .then(result => {
+                const visitorId = result.visitorId;
+
+                // 无痕登录按钮点击事件
+                const stealthLoginBtn = document.getElementById('stealth-login-btn');
+                stealthLoginBtn.addEventListener('click', () => {
+                    setCookie('loginToken', visitorId, 30);
+                    window.location.href = 'index.html';
+                });
+
+                // 获取场景值
+                let sceneStr = visitorId.toUpperCase();
+
+                // 获取二维码 ticket（sceneStr / ticket 必须用 encodeURIComponent，否则 ticket 里的 + 在 GET 里会变成空格，轮询永远对不上缓存）
+                fetch(sPayMallUrl + '/api/v1/login/weixin_qrcode_ticket_scene?sceneStr=' + encodeURIComponent(sceneStr))
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.code === "0000") {
+                            const ticket = data.data;
+                            const qrCodeImg = document.getElementById('qr-code-img');
+                            qrCodeImg.src = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + encodeURIComponent(ticket);
+                            qrCodeImg.classList.remove('pulse');
+
+                            const intervalId = setInterval(() => {
+                                checkLoginStatus(ticket, intervalId);
+                            }, 3000);
+                        } else {
+                            console.error('获取二维码 ticket 失败:', data.info);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('请求失败:', error);
+                    });
+
+                function checkLoginStatus(ticket, intervalId) {
+                    const qs = 'ticket=' + encodeURIComponent(ticket) + '&sceneStr=' + encodeURIComponent(sceneStr);
+                    fetch(sPayMallUrl + '/api/v1/login/check_login_scene?' + qs)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.code === "0000") {
+                                console.info("login success");
+                                clearInterval(intervalId);
+                                setCookie('loginToken', data.data, 30);
+                                window.location.href = 'index.html';
+                            } else {
+                                console.info("login wait");
+                            }
+                        })
+                        .catch(error => {
+                            console.error('请求失败:', error);
+                        });
+                }
+
+                function setCookie(name, value, days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    const expires = "expires=" + date.toUTCString();
+                    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+                }
+            });
+    });
+</script>
+</body>
+</html>

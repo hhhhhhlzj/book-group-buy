@@ -1,0 +1,55 @@
+# 拼团方案 A · 切片2：Prometheus + Grafana（本机）
+# 启动前请先跑 8070 / 8091 两个 Spring Boot 应用
+# docker compose -f docker-compose-grafana.yml up -d
+#
+# 访问：
+#   Prometheus  http://127.0.0.1:19090  （宿主机 9090 常被 xxl-job 等占用，映射到 19090）
+#   Grafana     http://127.0.0.1:4000   默认 admin / admin123
+version: '3.9'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.47.2
+    container_name: group-buy-prometheus
+    restart: unless-stopped
+    mem_limit: 256m
+    ports:
+      - "19090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=7d
+      - --web.enable-lifecycle
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - group-buy-monitor
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: group-buy-grafana
+    restart: unless-stopped
+    mem_limit: 256m
+    ports:
+      - "4000:4000"
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/etc/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      - GF_SERVER_HTTP_PORT=4000
+      # 不挂载 grafana.ini（其中 mysql:3306 与本机 13306 不一致）；默认 sqlite3
+    networks:
+      - group-buy-monitor
+
+networks:
+  group-buy-monitor:
+    driver: bridge
+
+volumes:
+  grafana-data:

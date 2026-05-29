@@ -1,0 +1,460 @@
+/* ==========================================================
+   订单明细 / 同书香拼团主题
+   ========================================================== */
+:root {
+    --ink-black: #1a1a1a;
+    --ink-deep: #2c2c2c;
+    --ink-mid: #555;
+    --ink-light: #888;
+    --vermillion: #b22222;
+    --vermillion-deep: #8b0000;
+    --paper: #faf6ee;
+    --paper-soft: #f5f1e8;
+    --paper-line: #e8e0d0;
+    --gold: #b8860b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--paper);
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    padding-bottom: 40px;
+    min-height: 100vh;
+    color: var(--ink-black);
+}
+
+/* 头部 */
+.header {
+    background: var(--ink-black);
+    padding: 22px 20px;
+    border-bottom: 2px solid var(--vermillion);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header-content {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+.header-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.back-btn {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid rgba(250, 246, 238, 0.4);
+    padding: 7px 14px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.back-btn:hover {
+    background: var(--vermillion);
+    border-color: var(--vermillion);
+    color: #fff;
+}
+
+.header-content h1 {
+    font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+    font-size: 22px;
+    color: var(--paper);
+    font-weight: 600;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+}
+.header-content h1::before,
+.header-content h1::after {
+    content: "·";
+    color: var(--vermillion);
+    margin: 0 12px;
+    font-size: 18px;
+}
+.user-info {
+    font-size: 12px;
+    color: rgba(250, 246, 238, 0.7);
+    border: 1px solid rgba(250, 246, 238, 0.25);
+    padding: 4px 12px;
+    border-radius: 2px;
+    display: inline-block;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    letter-spacing: 1px;
+}
+
+/* 订单容器 */
+.order-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+/* 订单列表 */
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* 订单项：宣纸卡片 */
+.order-item {
+    background: #fff;
+    padding: 22px 24px;
+    border: 1px solid var(--paper-line);
+    position: relative;
+    transition: all 0.25s ease;
+}
+.order-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--ink-light);
+    transition: background 0.25s;
+}
+.order-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+.order-item:hover::before {
+    background: var(--vermillion);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--paper-line);
+}
+.order-id {
+    font-size: 14px;
+    color: var(--ink-deep);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    padding: 3px 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.order-id:hover {
+    color: var(--vermillion);
+    background: var(--paper-soft);
+}
+.order-id-text {
+    font-family: "Courier New", monospace;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.copy-icon {
+    font-size: 12px;
+    opacity: 0.5;
+    transition: all 0.25s ease;
+}
+.order-id:hover .copy-icon {
+    opacity: 1;
+}
+
+/* 订单状态：印章风格 */
+.order-status {
+    padding: 4px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: "Songti SC", "STSong", serif;
+    border: 1px solid;
+}
+.status-create {
+    background: #fff;
+    color: var(--ink-mid);
+    border-color: var(--ink-light);
+}
+.status-pay-wait {
+    background: #fff;
+    color: var(--gold);
+    border-color: var(--gold);
+}
+.status-pay-success {
+    background: var(--vermillion);
+    color: #fff;
+    border-color: var(--vermillion);
+}
+.status-deal-done {
+    background: var(--ink-black);
+    color: var(--paper);
+    border-color: var(--ink-black);
+}
+.status-close {
+    background: var(--paper-soft);
+    color: var(--ink-light);
+    border-color: var(--paper-line);
+}
+
+.order-content {
+    margin-bottom: 14px;
+}
+
+.product-name {
+    font-family: "Songti SC", "STSong", "SimSun", "宋体", serif;
+    font-size: 16px;
+    color: var(--ink-black);
+    margin-bottom: 14px;
+    line-height: 1.6;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.order-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--ink-mid);
+    margin-bottom: 4px;
+    background: var(--paper-soft);
+    padding: 12px 14px;
+    border-left: 3px solid var(--vermillion);
+}
+
+.order-time {
+    font-size: 12px;
+    color: var(--ink-light);
+    font-family: "Courier New", monospace;
+}
+
+.pay-amount {
+    font-size: 20px;
+    color: var(--vermillion);
+    font-weight: 700;
+    font-family: "Courier New", monospace;
+}
+.pay-amount::before {
+    content: "￥";
+    font-size: 14px;
+    margin-right: 2px;
+    font-weight: 500;
+}
+
+.order-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--paper-line);
+}
+
+.refund-btn {
+    padding: 8px 22px;
+    border: 1px solid var(--vermillion);
+    background: transparent;
+    color: var(--vermillion);
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.refund-btn:hover {
+    background: var(--vermillion);
+    color: #fff;
+}
+.refund-btn:disabled {
+    background: var(--paper-soft);
+    color: var(--ink-light);
+    border-color: var(--paper-line);
+    cursor: not-allowed;
+}
+.refund-btn:disabled:hover {
+    background: var(--paper-soft);
+    color: var(--ink-light);
+}
+
+/* 加载更多按钮 */
+.load-more-container {
+    text-align: center;
+    margin-top: 28px;
+}
+.load-more-btn {
+    padding: 11px 36px;
+    background: transparent;
+    color: var(--ink-deep);
+    border: 1px solid var(--ink-deep);
+    border-radius: 2px;
+    font-size: 14px;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.load-more-btn:hover {
+    background: var(--ink-black);
+    color: #fff;
+}
+.load-more-btn:disabled {
+    background: var(--paper-soft);
+    color: var(--ink-light);
+    border-color: var(--paper-line);
+    cursor: not-allowed;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: #fff;
+    border: 1px solid var(--paper-line);
+}
+.empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+.empty-content::before {
+    content: "暂  无  订  单";
+    font-family: "Songti SC", "STSong", serif;
+    font-size: 22px;
+    color: var(--ink-light);
+    letter-spacing: 6px;
+    font-weight: 600;
+}
+.empty-content::after {
+    content: "—— 去 首 页 看 看 吧 ——";
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+.empty-content p {
+    display: none;
+}
+
+/* 弹窗 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 26, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+.modal-content {
+    background: #fff;
+    padding: 30px 28px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    border-top: 4px solid var(--vermillion);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+.modal-content h3 {
+    margin: 0 0 16px;
+    color: var(--ink-black);
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 4px;
+    border-bottom: 1px dashed var(--paper-line);
+    padding-bottom: 14px;
+}
+.modal-content p {
+    margin: 14px 0;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+.modal-buttons {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+}
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 2px;
+    transition: all 0.25s ease;
+}
+.confirm-btn {
+    background: var(--vermillion);
+    color: #fff;
+}
+.confirm-btn:hover {
+    background: var(--vermillion-deep);
+}
+.cancel-btn {
+    background: var(--paper-soft);
+    color: var(--ink-mid);
+    border: 1px solid var(--paper-line);
+}
+.cancel-btn:hover {
+    background: var(--paper-line);
+}
+
+/* 加载提示 */
+.loading-tip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--ink-black);
+    color: var(--paper);
+    padding: 16px 28px;
+    border-radius: 2px;
+    z-index: 1001;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    font-family: "Songti SC", "STSong", serif;
+    letter-spacing: 4px;
+}
+.loading-tip p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* 响应式 */
+@media (max-width: 480px) {
+    .order-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .pay-amount {
+        font-size: 18px;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 20px 16px;
+    }
+    .header-content h1 {
+        font-size: 18px;
+        letter-spacing: 4px;
+    }
+}

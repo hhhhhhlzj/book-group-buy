@@ -1,0 +1,604 @@
+:root {
+  --ink-black: #1a1a1a;
+  --ink-deep: #2c2c2c;
+  --ink-mid: #555;
+  --ink-light: #888;
+  --vermillion: #b22222;
+  --vermillion-deep: #8b0000;
+  --paper: #faf6ee;
+  --paper-soft: #f5f1e8;
+  --paper-line: #e8e0d0;
+  --gold: #b8860b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+  background: var(--paper);
+  color: var(--ink-black);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.page-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 16px 100px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--paper-line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  font-family: 'Songti SC', 'STSong', serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.brand .seal {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 26px;
+  text-align: center;
+  color: #fff;
+  background: var(--vermillion);
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.top-bar-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: var(--ink-mid);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--vermillion);
+}
+
+.lead {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.lead-error {
+  color: var(--vermillion);
+}
+
+.btn-primary {
+  background: var(--vermillion);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--ink-deep);
+  border: 1px solid var(--ink-deep);
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.category-tab {
+  border: 1px solid var(--paper-line);
+  background: #fff;
+  color: var(--ink-mid);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.category-tab.active {
+  background: var(--vermillion);
+  border-color: var(--vermillion);
+  color: #fff;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 18px;
+}
+
+.goods-card {
+  display: block;
+  background: var(--paper-soft);
+  border: 1px solid var(--paper-line);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s ease;
+}
+
+.goods-card:hover {
+  transform: translateY(-2px);
+}
+
+.goods-card-cover {
+  aspect-ratio: 3 / 4;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goods-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.goods-card-body {
+  padding: 12px;
+}
+
+.goods-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  min-height: 2.7em;
+  margin-bottom: 6px;
+}
+
+.goods-card-blurb {
+  font-size: 12px;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+
+.goods-card-price {
+  font-size: 13px;
+  color: var(--vermillion);
+  font-weight: 600;
+}
+
+.goods-card-origin {
+  font-size: 11px;
+  color: var(--ink-light);
+  text-decoration: line-through;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+.goods-card-hint {
+  font-size: 11px;
+  color: var(--ink-mid);
+  margin-top: 4px;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  padding: 40px 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-title {
+  font-family: 'Songti SC', 'STSong', serif;
+  font-size: 26px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+
+.login-sub {
+  color: var(--ink-light);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.qr-box {
+  display: inline-block;
+  padding: 10px;
+  background: var(--paper-soft);
+  border: 1px solid var(--paper-line);
+  margin-bottom: 16px;
+}
+
+.qr-box img {
+  width: 200px;
+  height: 200px;
+  display: block;
+}
+
+.detail-hero img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  background: var(--paper-soft);
+}
+
+.product-title {
+  font-size: 22px;
+  margin: 16px 0 12px;
+  font-family: 'Songti SC', 'STSong', serif;
+}
+
+.book-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.meta-item {
+  font-size: 13px;
+  color: var(--ink-mid);
+}
+
+.meta-item .label {
+  color: var(--ink-light);
+  margin-right: 6px;
+}
+
+.promotion-text {
+  color: var(--vermillion);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+.highlight-item {
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.highlight-item .h-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.highlight-item .h-desc {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+.group-list {
+  margin-bottom: 80px;
+}
+
+.group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.group-btn,
+.action-bar button {
+  background: var(--vermillion);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+}
+
+.action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid var(--paper-line);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.action-bar button {
+  flex: 1;
+}
+
+.action-bar .secondary {
+  background: #fff;
+  color: var(--ink-deep);
+  border: 1px solid var(--paper-line);
+}
+
+.order-item {
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.order-status {
+  color: var(--vermillion);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 360px;
+  width: 100%;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.modal-actions button {
+  flex: 1;
+}
+
+.payment-modal h3 {
+  margin-bottom: 12px;
+}
+
+.payment-modal p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.copyable {
+  color: var(--vermillion);
+  cursor: pointer;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ink-mid);
+  padding: 40px 0;
+}
+
+.loading-tip {
+  text-align: center;
+  color: var(--ink-light);
+  padding: 16px;
+}
+
+.swiper-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+
+.swiper-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--paper-line);
+}
+
+.swiper-dot.active {
+  background: var(--vermillion);
+}
+
+.profile-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profile-nav {
+  flex: 0 0 160px;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.profile-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.profile-link {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--ink-mid);
+  margin-bottom: 4px;
+}
+
+.profile-link.active {
+  background: var(--paper-soft);
+  color: var(--vermillion);
+  font-weight: 600;
+}
+
+.profile-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.address-card {
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.address-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.tag-default {
+  display: inline-block;
+  font-size: 12px;
+  color: #fff;
+  background: var(--vermillion);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.form-row input {
+  padding: 8px 10px;
+  border: 1px solid var(--paper-line);
+  border-radius: 6px;
+}
+
+.checkbox-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.fav-btn {
+  flex-shrink: 0;
+}
+
+.address-pick-item {
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.address-pick-item.selected {
+  border-color: var(--vermillion);
+  background: var(--paper-soft);
+}
+
+/* 个人中心：收藏/浏览 — 约为商城列表 1/3 宽，封面完整不裁切 */
+.profile-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap: 12px;
+}
+
+.profile-book-card .goods-card-body {
+  padding: 8px;
+}
+
+.profile-book-card .goods-card-title {
+  font-size: 12px;
+  line-height: 1.3;
+  min-height: auto;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profile-book-card .goods-card-blurb {
+  font-size: 11px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profile-book-card .goods-card-cover img {
+  object-fit: contain;
+}

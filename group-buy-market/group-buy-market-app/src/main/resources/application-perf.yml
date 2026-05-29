@@ -1,0 +1,10 @@
+# 切片3 压测优化 Profile：在 dev 基础上启用
+# 启动：spring.profiles.active=dev,perf
+# 优化点：Tomcat 连接/线程池（dev 中为压测前的保守值 20，Grafana 上 P99 毛刺来自排队）
+server:
+  tomcat:
+    max-connections: 200
+    threads:
+      max: 100
+      min-spare: 20
+    accept-count: 100

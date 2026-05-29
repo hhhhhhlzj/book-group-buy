@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  # 本机开发：两 Spring Boot 应用（需先启动 8070 / 8091）
+  # Docker Desktop 用 host.docker.internal；Linux 可改为 172.17.0.1 或宿主机 IP
+  - job_name: 'group-buy-apps'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['host.docker.internal:8091']
+        labels:
+          env: local
+          app: group-buy-market
+      - targets: ['host.docker.internal:8070']
+        labels:
+          env: local
+          app: s-pay-mall
+
+  # 保留旧配置示例（按需改 IP）
+  # - job_name: 'group-buy-market-app'
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: ['192.168.1.107:8091']

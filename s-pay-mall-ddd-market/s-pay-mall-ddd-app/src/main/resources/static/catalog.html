@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香拼团 - 全部书目</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+<div class="top-bar">
+    <div class="brand"><span class="seal">书</span>书香拼团 · 技术好书共读</div>
+    <div class="top-bar-actions">
+        <a class="nav-link" href="catalog.html">全部书目</a>
+        <a class="nav-link" href="index.html">商品详情</a>
+        <a class="nav-link" href="order-list.html">我的订单 ›</a>
+    </div>
+</div>
+
+<div class="catalog-wrap">
+    <p id="catalog-status" class="catalog-lead">正在加载拼团价与在团人数…</p>
+    <div id="catalog-grid" class="catalog-grid"></div>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/books.js"></script>
+<script>
+(function () {
+    var CATALOG_GUEST_USER_ID = "catalog_guest";
+    var SOURCE = "s01";
+    var CHANNEL = "c01";
+
+    function escapeHtml(text) {
+        if (text == null) return "";
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+    }
+
+    function formatPrice(value) {
+        var num = Number(value);
+        if (isNaN(num)) return "--";
+        return num.toFixed(0);
+    }
+
+    function buildMarketMap(goodsList) {
+        var map = {};
+        if (!goodsList) return map;
+        goodsList.forEach(function (item) {
+            if (item && item.goodsId) {
+                map[item.goodsId] = item;
+            }
+        });
+        return map;
+    }
+
+    function renderCards(books, marketMap, usingFallback) {
+        var root = document.getElementById("catalog-grid");
+        if (!root || !books || !books.length) {
+            if (root) root.innerHTML = '<p class="catalog-empty">暂无书目</p>';
+            return;
+        }
+
+        root.innerHTML = books.map(function (b) {
+            var market = marketMap[b.goodsId];
+            var payPrice = market && market.payPrice != null ? market.payPrice : b.listPrice;
+            var originalPrice = market && market.originalPrice != null ? market.originalPrice : b.listPrice;
+            var teamCount = market && market.allTeamUserCount != null ? market.allTeamUserCount : null;
+            var priceLine = usingFallback
+                ? "￥" + formatPrice(payPrice) + " 起（静态参考价）"
+                : "拼团价 ￥" + formatPrice(payPrice);
+            if (!usingFallback && Number(originalPrice) > Number(payPrice)) {
+                priceLine += ' <span class="catalog-card-origin">￥' + formatPrice(originalPrice) + "</span>";
+            }
+            var teamLine = teamCount != null
+                ? teamCount + " 人在团"
+                : "进入详情查看组队";
+
+            return (
+                '<a class="catalog-card" href="index.html?goodsId=' + encodeURIComponent(b.goodsId) + '">' +
+                '<div class="catalog-card-cover"><img src="' + escapeHtml(b.cover) + '" alt=""></div>' +
+                '<div class="catalog-card-body">' +
+                '<div class="catalog-card-title">' + escapeHtml(b.title) + "</div>" +
+                '<div class="catalog-card-blurb">' + escapeHtml(b.blurb) + "</div>" +
+                '<div class="catalog-card-price">' + priceLine + "</div>" +
+                '<div class="catalog-card-hint">' + escapeHtml(teamLine) + "</div>" +
+                "</div></a>"
+            );
+        }).join("");
+    }
+
+    function setStatus(message, isError) {
+        var status = document.getElementById("catalog-status");
+        if (!status) return;
+        status.textContent = message;
+        status.classList.toggle("catalog-lead-error", !!isError);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var books = window.CATALOG_BOOKS || [];
+        var loginUserId = window.getCookie ? window.getCookie("loginToken") : null;
+        var userId = loginUserId || CATALOG_GUEST_USER_ID;
+        var apiUrl = (window.AppConfig && window.AppConfig.groupBuyMarketUrl
+            ? window.AppConfig.groupBuyMarketUrl
+            : "http://127.0.0.1:8091") + "/api/v1/gbm/index/query_goods_list";
+
+        fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                source: SOURCE,
+                channel: CHANNEL,
+                userId: userId === CATALOG_GUEST_USER_ID ? "" : userId
+            })
+        })
+            .then(function (res) { return res.json(); })
+            .then(function (payload) {
+                if (!payload || payload.code !== "0000" || !payload.data) {
+                    throw new Error((payload && payload.info) || "接口返回异常");
+                }
+                var marketMap = buildMarketMap(payload.data.goodsList);
+                renderCards(books, marketMap, false);
+                var hint = loginUserId
+                    ? "以下为渠道书目，拼团价与在团人数来自营销服务（已登录试算）。"
+                    : "以下为渠道书目，拼团价与在团人数来自营销服务（未登录按访客试算，登录后可能与详情页一致）。";
+                setStatus(hint, false);
+            })
+            .catch(function (err) {
+                console.warn("catalog query_goods_list failed", err);
+                renderCards(books, {}, true);
+                setStatus("营销列表暂不可用，已展示静态参考价。请确认 8091 服务已启动。", true);
+            });
+    });
+})();
+</script>
+</body>
+</html>
