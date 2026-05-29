@@ -1,0 +1,73 @@
+# ============================================
+# Sensitive configs (CRITICAL - do not commit)
+# ============================================
+**/application-dev.yml
+**/application-prod.yml
+**/application-test.yml
+**/application-local.yml
+**/*.key
+**/*.pem
+**/*.p12
+**/*.jks
+**/.env
+**/.env.*
+**/secrets/
+
+# ============================================
+# Build artifacts
+# ============================================
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ============================================
+# IDE
+# ============================================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.factorypath
+.apt_generated
+.springBeans
+.sts4-cache
+
+# ============================================
+# Logs & runtime data
+# ============================================
+logs/
+log/
+*.log
+data/log/
+**/data/log/
+**/data/
+nohup.out
+
+# ============================================
+# OS
+# ============================================
+.DS_Store
+Thumbs.db
+
+# ============================================
+# Misc
+# ============================================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Node (if any frontend)
+node_modules/
+npm-debug.log

@@ -1,0 +1,9 @@
+﻿label=after-tomcat
+total=150
+ok=119
+wallSec=30.89
+qps=4.86
+avgMs=2846.2
+p95Ms=30002
+p99Ms=30022
+maxMs=30026
